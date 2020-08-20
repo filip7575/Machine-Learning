@@ -84,23 +84,25 @@ def predict_category(url, classifier):
   # Scrapy load
   #titulo=soup.find('h1', class_='titulo').getText()
   #print(soup.find('h1', class_='titulo'))
+    
   article = 'El proceso de Bankia para devolver el dinero a los pequenos accionistas que suscribieron su salida a Bolsa supone'\
                ' un varapalo a los grandes despachos de abogados que aglutinan miles de demandas contra el banco. Si esos clientes'\
                ' se adhieren a la via extrajudicial y desisten antes de la sentencia, estos bufetes dejaran de ingresar el 100% de'\
                ' las cuantias de una condena en costas y los intereses legales. Por eso, algunos de estos despachos han empezado a'\
                ' esgrimir las clausulas de sus contratos, avisando a sus clientes de que en caso de renunciar a la via judicial'\
                ' deberan abonar igualmente los honorarios'
-  if soup.find('h1', class_='titulo') != None:
-    titulo=soup.find('h1', class_='titulo').getText()
-    detalle=soup.find('div', class_='detalle').getText()
-    post=soup.find('div', class_='cuerpo fullpost__cuerpo').getText()
-    post = post.encode('utf8')
-    #post = post.replace('"', '').replace('“', '').replace('”', '')
-    #titulo = titulo.replace('"', '').replace('“', '').replace('”', '')
-    #detalle = detalle.replace('"', '').replace('“', '').replace('”', '')
-    print(detalle)
-    print(titulo)
-    article = titulo.encode('utf8')
+  #if soup.find('h1', class_='titulo') != None:
+  #  titulo=soup.find('h1', class_='titulo').getText()
+  #  detalle=soup.find('div', class_='detalle').getText()
+  #  post=soup.find('div', class_='cuerpo fullpost__cuerpo').getText()
+  #  post = post.encode('utf8')
+  #  #post = post.replace('"', '').replace('“', '').replace('”', '')
+  #  #titulo = titulo.replace('"', '').replace('“', '').replace('”', '')
+  #  #detalle = detalle.replace('"', '').replace('“', '').replace('”', '')
+  #  print(detalle)
+  #  print(titulo)
+  #  article = titulo.encode('utf8')
+    
   X_test = tfid.transform([article])
   return clf.predict(X_test)[0]
 
@@ -112,14 +114,6 @@ def show_predicted_categories(urls, classifier):
 
 show_predicted_categories(
     [
-        'https://thetimes.cl/contenido/6480/curico-unido-volvio-a-los-triunfos-a-costa-del-complicado-deportes-iquique',
-        'https://thetimes.cl/contenido/5995/la-subtel-recibio-las-propuestas-por-el-proyecto-de-fibra-optica-nacional',
-        'https://thetimes.cl/contenido/6447/realizan-mesa-publico-privada-para-abordar-exportaciones-por-coronavirus',
-        'https://thetimes.cl/contenido/6369/la-seremi-de-salud-realiza-un-simulacro-ante-el-posible-arribo-de-pasajero-con-c',
-        'https://thetimes.cl/contenido/6189/ejercito-de-chile-compromete-apoyo-al-minsal-ante-emergencia-por-coronavirus',
-        'https://thetimes.cl/contenido/6469/tenis-cristian-garin-ya-tiene-rival-para-el-atp-250-de-buenos-aires',
-        'https://thetimes.cl/contenido/5995/la-subtel-recibio-las-propuestas-por-el-proyecto-de-fibra-optica-nacional',
-        'https://thetimes.cl/contenido/5947/aprueban-proyecto-para-mejorar-iluminacion-con-tecnologia-led-en-cerro-castillo',
-        'https://thetimes.cl/contenido/6448/2019-inversion-extranjera-directa-crece-un-78-y-alcanza-los-us10797-millones'],
+        'https://thetimes.cl/contenido/6480/curico-unido-volvio-a-los-triunfos-a-costa-del-complicado-deportes-iquique'],
     clf)
 
